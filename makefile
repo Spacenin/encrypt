@@ -1,14 +1,14 @@
 #define variables for later use in function
-CC=gcc
-CFLAGS=-Wall -g
+CC=g++
+CXXFLAGS=-Wall -g -std=c++11
 LFLAGS=-lm
 TARGET=encryptTest
 
 #define source files for use in compiling
 C_SRCS := \
-	$(wildcard *.c) \
-	$(wildcard src/*.c) \
-	$(wildcard src/**/*.c) 
+	$(wildcard *.cpp) \
+	$(wildcard src/*.cpp) \
+	$(wildcard src/**/*.cpp) 
 
 #define header files for use in compiling
 HDRS := \
@@ -17,8 +17,8 @@ HDRS := \
 	$(wildcard src/**/*.h)
 
 #define object files for use in compiling
-OBJS := $(patsubst %.c, bin/%.o, $(wildcard *.c))
-OBJS += $(filter %.o, $(patsubst src/%.c, bin/%.o, $(C_SRCS)))
+OBJS := $(patsubst %.cpp, bin/%.o, $(wildcard *.cpp))
+OBJS += $(filter %.o, $(patsubst src/%.cpp, bin/%.o, $(C_SRCS)))
 
 #default target if none other is specified
 all: build
@@ -29,12 +29,12 @@ build: $(OBJS)
 	$(CC) $(OBJS) -o $(TARGET) $(LFLAGS)
 
 #sets the bin directory to hold needed files
-bin/%.o: %.c $(HDRS)
+bin/%.o: %.cpp $(HDRS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #sets the bin directory to hold needec files from the source directory
-bin/%.o: src/%.c $(HDRS)
+bin/%.o: src/%.cpp $(HDRS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
