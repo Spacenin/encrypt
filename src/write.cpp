@@ -2,12 +2,19 @@
 #include <fstream>
 #include <string>
 #include "write.h"
+#include "cipher.h"
 
 int writeFile () {
     std::string writeFile;
     std::string plaintext;
 
-    std::cout << "Enter the file name you would like to write to (up to 15 chars):" << std::endl;
+    int cipherChecker = cipherCheck();
+
+    if (cipherChecker != 0) {
+        return(-1);
+    }
+
+    std::cout << "Enter the file name you would like to write to:" << std::endl;
     std::cin.ignore();    
     std::getline(std::cin, writeFile);
 
@@ -20,6 +27,8 @@ int writeFile () {
 
     std::cout << "Enter in text you would like to encrypt: " << std::endl;
     std::getline(std::cin, plaintext);
+    
+    plaintext = encrypt(plaintext);
 
     writer << plaintext;
 

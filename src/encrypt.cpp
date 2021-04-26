@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "write.h"
+#include "read.h"
+#include "cipher.h"
 
 int main() {
     int userOp;
@@ -15,6 +17,7 @@ int main() {
         std::cout << "--> ";
 
         std::cin >> userOp;
+        std::cout << std::endl;
 
         switch(userOp) {
             case 1:
@@ -27,14 +30,34 @@ int main() {
                         break;
                     }
 
+                    else {
+                        std::cout << "Message encrypted successfully!" << std::endl << std::endl;                        
+                    }
+
                     break;
                 }
             case 2:
                 {
+                    int checkRead = readFile();
+
+                    if (checkRead != 0) {
+                        std::cerr << "Error, reading from file did not work!" << std::endl;
+
+                        break;
+                    }
+
                     break;
                 }
             case 3:
                 {
+                    int cipherCheck = chooseCipher();
+
+                    if (cipherCheck != 0) {
+                        std::cerr << "Error, choosing cipher did not work!" << std::endl;
+
+                        break;
+                    }
+
                     break;
                 }
             case 4:
