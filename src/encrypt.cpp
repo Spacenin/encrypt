@@ -39,7 +39,9 @@ int main() {
                 }
             case 4:
                 {
-                    break;
+                    std::cout << "Thank for using the encryptor!" << std::endl;
+
+                    return(0);
                 }
             default: 
                 {
