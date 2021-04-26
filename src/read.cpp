@@ -7,6 +7,7 @@
 int readFile() {
     std::string readFile;
     std::string ciphertext;
+    std::string ciphertextDummy;
 
     int cipherChecker = cipherCheck();
 
@@ -27,7 +28,9 @@ int readFile() {
 
     std::getline(reader, ciphertext);
 
-    std::cout << "Your decrypted message is: " << decrypt(ciphertext) << std::endl;
+    ciphertextDummy = decrypt(ciphertext);
+
+    std::cout << "Your decrypted message is: " << ciphertextDummy << std::endl;
     std::cout << "Shhh, it's a secret!" << std::endl << std::endl;
 
     reader.close();

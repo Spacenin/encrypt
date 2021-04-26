@@ -12,6 +12,11 @@ int cipherCheck() {
                 return(0);
                 break;
             }
+        case 1:
+            {
+                return(0);
+                break;
+            }
         default:
             {
                 std::cerr << "Error, cipher is not loaded in! Better check it!" << std::endl;
@@ -22,6 +27,7 @@ int cipherCheck() {
 }
 
 std::string encrypt(std::string plaintext) {
+    int caesarKey;
     std::string ciphertext = plaintext;
 
     switch(cipher) {
@@ -33,7 +39,17 @@ std::string encrypt(std::string plaintext) {
 
             break;
         }
+        case 1:
+        {
+            std::cout << "Enter key for Caesar cipher: ";
+            std::cin >> caesarKey;
 
+            for (char &i : ciphertext) {
+                i = i + caesarKey;
+            }
+
+            break;
+        }
         default:
         {
             std::cerr << "Error, chosen cipher is not loaded in!" << std::endl;
@@ -46,6 +62,7 @@ std::string encrypt(std::string plaintext) {
 }
 
 std::string decrypt(std::string ciphertext) {
+    int caesarKey;
     std::string plaintext = ciphertext;
 
     switch(cipher) {
@@ -57,7 +74,17 @@ std::string decrypt(std::string ciphertext) {
 
             break;
         }
+        case 1:
+        {
+            std::cout << "Enter key for Caesar cipher: ";
+            std::cin >> caesarKey;
 
+            for (char &i : plaintext) {
+                i = i - caesarKey;
+            }
+
+            break;
+        }
         default:
         {
             std::cerr << "Error, chosen cipher is not loaded in!" << std::endl;
